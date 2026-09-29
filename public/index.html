@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Reselling Admin</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1>🔍 Product Lookup</h1>
+<div class="sub">Search by product ID to view, price, and share.</div>
+
+<div id="authBox" class="card hidden">
+  <label for="adminKey">Access key</label>
+  <div class="search-row">
+    <input type="password" id="adminKey" autocomplete="current-password" placeholder="Enter your access key">
+    <button id="saveKeyBtn">Save</button>
+  </div>
+</div>
+
+<div class="search-row">
+  <input type="text" id="codeInput" inputmode="numeric" placeholder="e.g. 1024">
+  <button id="searchBtn">Search</button>
+</div>
+
+<div id="status" class="status"></div>
+
+<div id="result" class="card hidden">
+  <div class="imgs" id="imgsGrid"></div>
+  <div class="desc" id="descText"></div>
+  <div class="row"><span>Cost price</span><span id="costPrice"></span></div>
+
+  <label for="sellingPrice">Selling price</label>
+  <input type="number" id="sellingPrice" placeholder="Enter selling price">
+
+  <button class="share-btn" id="shareBtn">📤 Share to Customer</button>
+  <div id="shareStatus" class="status"></div>
+</div>
+
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

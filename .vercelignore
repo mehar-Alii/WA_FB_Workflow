@@ -1,0 +1,4 @@
+tests
+stamp_test_output
+*.png
+.env

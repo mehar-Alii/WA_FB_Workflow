@@ -1,0 +1,28 @@
+{
+  "name": "sana",
+  "version": "1.0.0",
+  "description": "WhatsApp product intake + reseller admin panel (Vercel-ready)",
+  "private": true,
+  "license": "ISC",
+  "main": "api/index.js",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "node scripts/dev.js",
+    "dev": "node scripts/dev.js",
+    "test:parser": "node tests/test-parser.js",
+    "test:stamp": "node tests/test-stamp.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1141.0",
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.117.2",
+    "@upstash/redis": "^1.39.0",
+    "axios": "^1.20.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "sharp": "^0.35.5"
+  }
+}
