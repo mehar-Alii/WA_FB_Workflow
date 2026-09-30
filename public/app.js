@@ -100,7 +100,9 @@
       const files = [];
       for (let i = 0; i < (currentProduct.image_urls || []).length; i++) {
         const url = currentProduct.image_urls[i];
-        const blob = await (await fetch(url)).blob();
+        const res = await fetch(url + (url.includes('?') ? '&' : '?') + 'share=1', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Could not load image ' + (i + 1));
+        const blob = await res.blob();
         files.push(new File([blob], `product_${currentProduct.product_code}_${i + 1}.jpg`, { type: 'image/jpeg' }));
       }
 
