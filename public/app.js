@@ -16,6 +16,15 @@
   function setKey(value) {
     try { localStorage.setItem(KEY_STORAGE, value); } catch (_) { /* private mode: key lives only for this page */ }
   }
+  // Removes supplier price lines so only the selling price we add is ever shown/shared
+  function cleanDescription(text) {
+    return (text || '')
+      .split('\n')
+      .filter(line => !/(price|sale\s*rate|\brate\b|\brs\.?\s*\d|\bpkr\b|\d+\s*\/-)/i.test(line))
+      .join('\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
 
   async function apiFetch(path) {
     const key = getKey();
@@ -74,7 +83,7 @@
       img.loading = 'lazy';
       grid.appendChild(img);
     });
-
+    $('descText').textContent = cleanDescription(p.description);
     $('descText').textContent = p.description || '';
     $('costPrice').textContent = p.price != null ? `Rs ${p.price}` : '—';
     $('sellingPrice').value = p.selling_price != null ? p.selling_price : '';
@@ -106,8 +115,7 @@
         files.push(new File([blob], `product_${currentProduct.product_code}_${i + 1}.jpg`, { type: 'image/jpeg' }));
       }
 
-      const shareText =
-        `${currentProduct.description}\n\nPrice: Rs ${sellingPrice}`;
+      const shareText = `${cleanDescription(currentProduct.description)}\n\nPrice: Rs ${sellingPrice}`;
 
       // Trigger the native share sheet
       if (navigator.canShare && navigator.canShare({ files })) {
